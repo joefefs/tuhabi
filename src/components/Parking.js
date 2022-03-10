@@ -2,7 +2,7 @@ import React from "react";
 
 function Parking({ formData, setFormData }) {
   return (
-    <div>
+    <div className='radio'>
       <input
         type="radio"
         id="si"

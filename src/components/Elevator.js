@@ -3,7 +3,7 @@ import React from 'react';
 function Elevator({formData, setFormData}) {
     console.log(formData.elevator)
     return (
-        <div>
+        <div className='radio'>
          
             <input 
                 type="radio"  

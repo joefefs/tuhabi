@@ -11,7 +11,7 @@ function Options({ formData, setFormData }) {
         console.log(formData.bbq)
     }
   return (
-    <div>
+    <div className="checkbox">
     
       <input 
         type="checkbox" 

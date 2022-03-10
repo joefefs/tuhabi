@@ -10,9 +10,9 @@ import UploadImage from "./UploadImage";
 import Elevator from "./Elevator";
 import Summary from "./Summary";
 
-function Form(props) {
+function Form({template}) {
   const [step, setStep] = useState(0);
-  const [progressbar, setProgressbar] = useState("0");
+  const [progressbar, setProgressbar] = useState("10%");
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -27,10 +27,6 @@ function Form(props) {
     image: '',
     elevator: false,
   });
-
-  const [urlRoute, setUrlRoute] = useState('/')
-  console.log(urlRoute)
-
 
   const FormTitles = [
     "Nombre completo",
@@ -47,34 +43,30 @@ function Form(props) {
 
   const StepDisplay = () => {
     if (step === 0) {
-      return <FullName formData={formData} setFormData={setFormData} />;
+      return <FullName formData={formData} setFormData={setFormData} template={template} />;
     } else if (step === 1) {
-      return <Email formData={formData} setFormData={setFormData} />;
+      return <Email formData={formData} setFormData={setFormData} template={template} />;
     } else if (step === 2) {
-      return <Address formData={formData} setFormData={setFormData} />;
+      return <Address formData={formData} setFormData={setFormData} template={template} />;
     } else if (step === 3) {
-      return <Floor formData={formData} setFormData={setFormData} />;
+      return <Floor formData={formData} setFormData={setFormData} template={template} />;
     } else if (step === 4) {
-      return <Options formData={formData} setFormData={setFormData} />;
+      return <Options formData={formData} setFormData={setFormData} template={template} />;
     } else if (step === 5) {
-      return <Parking formData={formData} setFormData={setFormData} />;
+      return <Parking formData={formData} setFormData={setFormData} template={template} />;
     } else if (step === 6) {
-      return <Price formData={formData} setFormData={setFormData} formatCurrency={formatCurrency}  />;
+      return <Price formData={formData} setFormData={setFormData} template={template} formatCurrency={formatCurrency}   />;
     } else if (step === 7) {
-      return <UploadImage formData={formData} setFormData={setFormData} />;
+      return <UploadImage formData={formData} setFormData={setFormData} template={template} />;
     } else if (step === 8) {
-      return <Elevator formData={formData} setFormData={setFormData} />;
-     } // else if (step === 9) {
-    //     return <Summary formData={formData} formatCurrency={formatCurrency} />;
-    //   }
+      return <Elevator formData={formData} setFormData={setFormData} template={template} />;
+    }
   };
-
-
 
   function handleClickNext() {
     setStep((prevStep) => prevStep + 1);
     setProgressbar(
-      parseFloat(((step + 1) / 9) * 100)
+      parseFloat(((step + 2) / 10) * 100)
         .toFixed(2)
         .concat("%")
     );
@@ -83,42 +75,52 @@ function Form(props) {
   function handleClickPrev() {
     setStep((prevStep) => prevStep + -1);
     setProgressbar(
-      parseFloat(((step - 1) / 9) * 100)
+      parseFloat(((step - 1) / 10) * 100)
         .toFixed(2)
         .concat("%")
     );
   }
-
+console.log(progressbar)
   const formatCurrency = (x) => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   }
 
   return (
+    <>
+    <div className="app-wrapper">
+   
+    
+ 
     <div className="form">
-      <div>
-        <div
-          style={{ width: progressbar, height: "10px", backgroundColor: "red" }}
-        ></div>
-      </div>
+    
+     
       <div className="form-container">
+      <div className="progressbar"
+      style={{ width: progressbar}}
+    ></div>
         <div className="header">
           <h1>{FormTitles[step]}</h1>
         </div>
         <div className="body">{StepDisplay()}</div>
         <div className="footer">
-          <button disabled={step == 0} onClick={handleClickPrev}>
+          <button disabled={step === 0} onClick={handleClickPrev}>
             Regresar
           </button>
           <button
-            disabled={step == FormTitles.length - 1}
+            disabled={step === FormTitles.length - 1}
             onClick={handleClickNext}
           >
             Siguiente
           </button>
+          </div>
+          
         </div>
-        <Summary formData={formData} formatCurrency={formatCurrency} />
+       
       </div>
+    
+    <Summary formData={formData} formatCurrency={formatCurrency} />
     </div>
+    </>
   );
 }
 

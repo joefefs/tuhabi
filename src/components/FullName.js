@@ -1,6 +1,8 @@
 import React from "react";
 
 function FullName({ formData, setFormData }) {
+
+
   return (
     <div>
       <label htmlFor="fullName">Nombre completo</label>
