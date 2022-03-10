@@ -23,7 +23,7 @@ function Parking({ formData, setFormData }) {
       />
       <label htmlFor="no">No</label>
       <br />
-      {/* ================= */}
+      
 
       {formData.parking === "si" && (
         <div>

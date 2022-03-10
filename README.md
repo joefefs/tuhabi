@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+# Instrucciones para probar el app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Clonar el repositorio en un directorio local con `git clone https://github.com/joefefs/tuhabi.git`
 
-## Available Scripts
+Navegar al directorio en la terminal y ejectura `yarn` o `npm install` para instalar todas las dependencias.
 
-In the project directory, you can run:
+Incializar con un servidor local (https://localhost:3000) ejecutando `yarn start` o `npm start`
 
-### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Acerca de mi approach
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+El formulario me representó varios retos, aquí un poco sobre el approach que tomé:
 
-### `yarn test`
+Crear un componente por cada paso del formulario así como uno general para todo el formulario. El componente `Form` es el que guarda el estado del app y el que genera toda la lógica pasando la data como props a los componentes hijos. Inicialmente en este paso utilice una lógica burda en la función `StepDisplay()` con if y else if para pasar de un paso al otro (pienso que esto se puede simplificar mucho). La intención era probar el formulario para después utilizar `react-router-dom` para generar las URLs en cada paso y renderear los componentes. Este último paso no me dio tiempo de terminar.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Todos los componentes en el formulario son controlados y están guardados en el state por lo que podemos visualizar en tiempo real la data que está ingresando el usario.
 
-### `yarn build`
+Para el progress bar se utilizó otra variable que guarda state y se va 'rellenando' en la función `handleClickNext()` con una función que determina el porcentaje de `width` a través de una operación matématica. Lo mismo se hace a la inversa con `handleClickPrev()`.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+ - Formulario en JSON: Un feature que no pude desarrollar para hacer el formulario reutilizable. No tengo mucha experiencia creando templates en JSON y aunque si logré renderear algunos componentes, no logré hacerlos funcionales de esta manera.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Lo que no pude resolver
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Implementación de React Router Dom. Por falta de tiempo no pude enlazar cada componente a su ruta.
 
-### `yarn eject`
+2. Formulario JSON. Me falta experiencia haciendo templates con JSON por lo que pasé mucho tiempo tratando de convertir los formularios en JSX a JSON pero no tuve suerte. Si logré renderear los campos, pero no guardar la data en el state del formulario rendereado a partir del JSON, por lo que opté por vovler al hardcoded form.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. El paso de la imagen tiene un bug al cargar la imagen
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. No es del todo responsive, el problema fue falta de tiempo, solo era cuestión de corregir los estilos.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Conclusiones
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+En general tuve complicaciones para implementar todo lo que pedía el ejercicio por lo que estaré estudiando estos conceptos y prácticando más a fondo. Estuve revisando algunas librerías como Formik y React Form Hooks para manejar esto de manera más óptima pero no tuve el tiempo suficiente para estudiar la documentación e implementarla.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Aún así, me sería de mucha ayuda un feedback detallado sobre el approach y otras mejoras que me permitirían crecer como desarrollador. Soy desarrollador completamente autodidacta, por lo que cualquier retroalimentación me es muy valiosa!
